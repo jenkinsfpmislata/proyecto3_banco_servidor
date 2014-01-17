@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpmislata.daw2.modelo.MovimientoBancario" table="movimiento" >
+        <id name="idMovimientoBancario" type="integer" column="idMovimiento"/>
+        
+       <many-to-one name="cuenta">
+            <column name="idCuentaBancaria"/>
+        </many-to-one> 
+        
+        <property name="tipoMovimientoBancario" column="tipoDeMovimiento">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.fpmislata.daw2.modelo.TipoMovimientoBancario</param>
+                <param name="type">12</param>
+        </type>
+        </property>
+        
+        <property name="importe"/>
+        <property name="fecha" />
+        <property name="saldoTotal" column="saldo" />
+        <property name="concepto" />
+        
+    </class>
+</hibernate-mapping>

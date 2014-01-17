@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpmislata.daw2.modelo.CuentaBancaria" table="cuenta_bancaria" >
+        <id name="idCuentaBancaria" type="integer" column="idCuenta_Bancaria"/>
+        
+        <many-to-one name="sucursalBancaria">
+            <column name="id_SucursalBancaria"/>
+        </many-to-one> 
+        <property name="numeroDeCuenta"/>
+        <property name="cif" />
+        <property name="dc" />
+        <property name="saldo" />
+        
+        
+    </class>
+</hibernate-mapping>
