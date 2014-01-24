@@ -37,10 +37,10 @@ public class EntidadBancariaController {
     EntidadBancariaDAO entidadBancariaDAO = new EntidadBancariaDAOImplHibernate();
     SucursalBancariaDAO sucursalBancariaDAO = new SucursalBancariaDAOImplHibernate();
             
-    @RequestMapping(value = {"/EntidadBancaria/{idEntidad}"}, method = RequestMethod.GET,produces = "application/json")
-    public void read(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @PathVariable("idEntidad") int idEntidad, @RequestBody String json) {
+    @RequestMapping(value = {"/EntidadBancaria/{nombre}"}, method = RequestMethod.GET,produces = "application/json")
+    public void read(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @PathVariable("nombre") String nombre, @RequestBody String json) {
         try {
-            EntidadBancaria entidadBancaria = entidadBancariaDAO.read(idEntidad);
+            List<EntidadBancaria> entidadBancaria = entidadBancariaDAO.findbyNombre(nombre);
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
 
             httpServletResponse.setContentType("application/json; charset=UTF-8");
