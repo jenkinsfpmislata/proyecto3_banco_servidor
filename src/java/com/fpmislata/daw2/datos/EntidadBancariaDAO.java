@@ -15,7 +15,7 @@ import javax.naming.NamingException;
  */
 public interface EntidadBancariaDAO extends GenericDAO<EntidadBancaria, Integer>{
 
-   
+   public List<EntidadBancaria> findbyNombre(String nombre);
 
     
 }

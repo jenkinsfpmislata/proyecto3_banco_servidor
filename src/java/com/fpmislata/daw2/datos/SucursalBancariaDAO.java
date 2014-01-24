@@ -5,6 +5,7 @@
 package com.fpmislata.daw2.datos;
 
 import com.fpmislata.daw2.modelo.SucursalBancaria;
+import java.util.List;
 
 /**
  *
@@ -12,7 +13,7 @@ import com.fpmislata.daw2.modelo.SucursalBancaria;
  */
 public interface SucursalBancariaDAO extends GenericDAO<SucursalBancaria, Integer>{
 
-   
+   public List<SucursalBancaria> findbyEntidad(int id);
 
     
 }

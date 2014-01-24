@@ -8,7 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fpmislata.daw2.datos.EntidadBancariaDAO;
 import com.fpmislata.daw2.datos.CuentaBancariaDAOImplHibernate;
 import com.fpmislata.daw2.datos.EntidadBancariaDAOImplHibernate;
+import com.fpmislata.daw2.datos.SucursalBancariaDAO;
+import com.fpmislata.daw2.datos.SucursalBancariaDAOImplHibernate;
 import com.fpmislata.daw2.modelo.EntidadBancaria;
+import com.fpmislata.daw2.modelo.SucursalBancaria;
 import com.fpmislata.daw2.modelo.TipoEntidadBancaria;
 import java.io.IOException;
 import java.util.List;
@@ -32,6 +35,7 @@ public class EntidadBancariaController {
 
     @Autowired
     EntidadBancariaDAO entidadBancariaDAO = new EntidadBancariaDAOImplHibernate();
+    SucursalBancariaDAO sucursalBancariaDAO = new SucursalBancariaDAOImplHibernate();
             
     @RequestMapping(value = {"/EntidadBancaria/{idEntidad}"}, method = RequestMethod.GET,produces = "application/json")
     public void read(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @PathVariable("idEntidad") int idEntidad, @RequestBody String json) {
@@ -81,6 +85,25 @@ public class EntidadBancariaController {
         }
 
     }
+     
+          @RequestMapping(value = {"/EntidadBancaria/{idEntidad}/sucursalesBancarias/"}, method = RequestMethod.GET,produces = "application/json")
+    public void findSucursales(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse,@PathVariable("idEntidad") int idEntidad, @RequestBody String json) {
+        try {
+            List<SucursalBancaria> listaSucursales = sucursalBancariaDAO.findbyEntidad(idEntidad);
+            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+
+            httpServletResponse.setContentType("application/json; charset=UTF-8");
+            ObjectMapper objectMapper = new ObjectMapper();
+            json = objectMapper.writeValueAsString(listaSucursales);
+            httpServletResponse.getWriter().println(json);
+        } catch (Exception ex) {
+            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+     
+     
+     
      
      @RequestMapping(value = {"/EntidadBancaria/"}, method = RequestMethod.POST,produces = "application/json")
     public void insert(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @RequestBody String json) {
