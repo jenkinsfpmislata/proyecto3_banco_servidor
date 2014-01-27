@@ -37,10 +37,10 @@ public class EntidadBancariaController {
     EntidadBancariaDAO entidadBancariaDAO = new EntidadBancariaDAOImplHibernate();
     SucursalBancariaDAO sucursalBancariaDAO = new SucursalBancariaDAOImplHibernate();
             
-    @RequestMapping(value = {"/EntidadBancaria/{nombre}"}, method = RequestMethod.GET,produces = "application/json")
-    public void read(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @PathVariable("nombre") String nombre, @RequestBody String json) {
+    @RequestMapping(value = {"/EntidadBancaria/{idEntidad}"}, method = RequestMethod.GET,produces = "application/json")
+    public void read(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @PathVariable("idEntidad") int idEntidad, @RequestBody String json) {
         try {
-            List<EntidadBancaria> entidadBancaria = entidadBancariaDAO.findbyNombre(nombre);
+            EntidadBancaria entidadBancaria = entidadBancariaDAO.read(idEntidad);
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
 
             httpServletResponse.setContentType("application/json; charset=UTF-8");
@@ -70,12 +70,19 @@ public class EntidadBancariaController {
     }
     
     
-     @RequestMapping(value = {"/EntidadBancaria/"}, method = RequestMethod.GET,produces = "application/json")
+     @RequestMapping(value = {"/EntidadBancaria"}, method = RequestMethod.GET,produces = "application/json")
     public void find(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @RequestBody String json) {
         try {
-            List<EntidadBancaria> listaEntidades = entidadBancariaDAO.findAll();
+            List<EntidadBancaria> listaEntidades;
+            if(httpRequest.getParameter("nombre")!=null){
+                String nombre = httpRequest.getParameter("nombre");
+                listaEntidades = entidadBancariaDAO.findbyNombre(nombre);
+                
+            }else{
+                listaEntidades = entidadBancariaDAO.findAll();
+            }
+            
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-
             httpServletResponse.setContentType("application/json; charset=UTF-8");
             ObjectMapper objectMapper = new ObjectMapper();
             json = objectMapper.writeValueAsString(listaEntidades);

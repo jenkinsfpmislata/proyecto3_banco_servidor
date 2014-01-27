@@ -68,11 +68,17 @@ public class CuentaBancariaController {
     }
     
     
-     @RequestMapping(value = {"/CuentaBancaria/"}, method = RequestMethod.GET,produces = "application/json")
+     @RequestMapping(value = {"/CuentaBancaria"}, method = RequestMethod.GET,produces = "application/json")
     public void find(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @RequestBody String json) {
         try {
-            
-            List<CuentaBancaria> listaCuentas = cuentaBancariaDAO.findAll();
+            List<CuentaBancaria> listaCuentas;
+            if(httpRequest.getParameter("cif")!=null){
+                String cif= httpRequest.getParameter("cif");
+                listaCuentas = cuentaBancariaDAO.findbyCif(cif);
+            }else{
+                 listaCuentas = cuentaBancariaDAO.findAll();
+            }
+           
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
             httpServletResponse.setContentType("application/json; charset=UTF-8");
             ObjectMapper objectMapper = new ObjectMapper();

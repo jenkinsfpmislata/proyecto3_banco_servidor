@@ -23,7 +23,7 @@ public class EntidadBancariaDAOImplHibernate extends GenericDAOImplHibernate<Ent
             Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
             Query query = session.createQuery("Select entidadBancaria from EntidadBancaria entidadBancaria where nombre LIKE ?");
-            query.setString(0, "%" + nombre + "%");
+            query.setString(0, nombre + "%");
             List<EntidadBancaria> objectList = query.list();
             session.getTransaction().commit();
             return objectList;
