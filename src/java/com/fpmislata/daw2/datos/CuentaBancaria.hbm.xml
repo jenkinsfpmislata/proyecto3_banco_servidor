@@ -7,6 +7,10 @@
         <many-to-one name="sucursalBancaria">
             <column name="id_SucursalBancaria"/>
         </many-to-one> 
+        <many-to-one name="cliente">
+            <column name="id_Cliente"/>
+        </many-to-one> 
+        
         <property name="numeroDeCuenta"/>
         <property name="cif" />
         <property name="dc" />
