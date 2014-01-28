@@ -27,6 +27,7 @@ public class CuentaBancaria implements Serializable {
     private BigDecimal saldo;
     private String cif;
     private List<MovimientoBancario> movimientos;
+    private Cliente cliente;
 
     public CuentaBancaria() {
         this.movimientos = new ArrayList<MovimientoBancario>();
@@ -98,6 +99,16 @@ public class CuentaBancaria implements Serializable {
     public void setMovimientos(List<MovimientoBancario> movimientos) {
         this.movimientos = movimientos;
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    
     
     
     

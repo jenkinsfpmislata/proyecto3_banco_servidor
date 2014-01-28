@@ -9,6 +9,7 @@
     <mapping resource="com/fpmislata/daw2/datos/CuentaBancaria.hbm.xml"/>
     <mapping resource="com/fpmislata/daw2/datos/MovimientoBancario.hbm.xml"/>
     <mapping resource="com/fpmislata/daw2/datos/SucursalBancaria.hbm.xml"/>
+    <mapping resource="com/fpmislata/daw2/datos/Cliente.hbm.xml"/>
   
   </session-factory>
 </hibernate-configuration>
