@@ -9,8 +9,11 @@ import com.fpmislata.daw2.datos.CuentaBancariaDAO;
 import com.fpmislata.daw2.datos.EntidadBancariaDAO;
 import com.fpmislata.daw2.datos.CuentaBancariaDAOImplHibernate;
 import com.fpmislata.daw2.datos.EntidadBancariaDAOImplHibernate;
+import com.fpmislata.daw2.datos.MovimientoBancarioDAO;
+import com.fpmislata.daw2.datos.MovimientoBancarioDAOImplHibernate;
 import com.fpmislata.daw2.modelo.CuentaBancaria;
 import com.fpmislata.daw2.modelo.EntidadBancaria;
+import com.fpmislata.daw2.modelo.MovimientoBancario;
 import com.fpmislata.daw2.modelo.TipoEntidadBancaria;
 import java.io.IOException;
 import java.util.List;
@@ -34,6 +37,7 @@ public class CuentaBancariaController {
 
     @Autowired
     CuentaBancariaDAO cuentaBancariaDAO = new CuentaBancariaDAOImplHibernate();
+    MovimientoBancarioDAO movimientoBancarioDAO = new MovimientoBancarioDAOImplHibernate();
             
     @RequestMapping(value = {"/CuentaBancaria/{idCuentaBancaria}"}, method = RequestMethod.GET,produces = "application/json")
     public void read(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @PathVariable("idCuentaBancaria") int idCuentaBancaria, @RequestBody String json) {
@@ -101,6 +105,22 @@ public class CuentaBancariaController {
             cuentaBancariaDAO.insert(cuentaBancaria);
              httpServletResponse.getWriter().println(json);
             
+        } catch (Exception ex) {
+            Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+      @RequestMapping(value = {"/CuentaBancaria/{idCuentaBancaria}/movimientosBancarios/"}, method = RequestMethod.GET,produces = "application/json")
+    public void findSucursales(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse,@PathVariable("idCuentaBancaria") int idCuentaBancaria, @RequestBody String json) {
+        try {
+            
+            List<MovimientoBancario> listaMovimientos = movimientoBancarioDAO.findbyIdCuenta(idCuentaBancaria);
+            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+
+            httpServletResponse.setContentType("application/json; charset=UTF-8");
+            ObjectMapper objectMapper = new ObjectMapper();
+            json = objectMapper.writeValueAsString(listaMovimientos);
+            httpServletResponse.getWriter().println(json);
         } catch (Exception ex) {
             Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);
         }

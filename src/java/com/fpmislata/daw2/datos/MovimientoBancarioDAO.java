@@ -5,6 +5,7 @@
 package com.fpmislata.daw2.datos;
 
 import com.fpmislata.daw2.modelo.MovimientoBancario;
+import java.util.List;
 
 /**
  *
@@ -12,7 +13,7 @@ import com.fpmislata.daw2.modelo.MovimientoBancario;
  */
 public interface MovimientoBancarioDAO extends GenericDAO<MovimientoBancario, Integer>{
 
-   
+     public List<MovimientoBancario> findbyIdCuenta(int id);
 
     
 }

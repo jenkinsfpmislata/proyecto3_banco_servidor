@@ -17,5 +17,19 @@ import org.hibernate.Session;
  */
 public class MovimientoBancarioDAOImplHibernate extends GenericDAOImplHibernate<MovimientoBancario, Integer> implements MovimientoBancarioDAO {
 
+    @Override
+    public List<MovimientoBancario> findbyIdCuenta(int id) {
+       
+            Session session = sessionFactory.getCurrentSession();
+            session.beginTransaction();
+            Query query = session.createQuery("Select movimientoBancario from MovimientoBancario movimientoBancario where cuenta.idCuentaBancaria=?");
+            query.setInteger(0, id);
+            List<MovimientoBancario> objectList = query.list();
+            session.getTransaction().commit();
+            return objectList;
+        
+    }
+
+    
     
 }
