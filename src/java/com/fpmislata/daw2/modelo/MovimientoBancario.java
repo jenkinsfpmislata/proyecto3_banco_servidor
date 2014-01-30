@@ -37,6 +37,7 @@ public class MovimientoBancario implements Serializable{
 
     public int getIdMovimientoBancario() {
         return idMovimientoBancario;
+        
     }
 
     public void setIdMovimientoBancario(int idMovimientoBancario) {
