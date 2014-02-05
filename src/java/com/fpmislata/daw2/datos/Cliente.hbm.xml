@@ -6,6 +6,7 @@
         <property name="nombre"/>
         <property name="apellido" />
         <property name="tipoCliente"/>
+        <property name="cif"/>
         
     </class>
 </hibernate-mapping>

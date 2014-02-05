@@ -11,25 +11,25 @@ import java.io.Serializable;
  *
  * @author Cristian
  */
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-public class Cliente implements Serializable{
-    
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Cliente implements Serializable {
+
     private int idCliente;
     private String nombre;
     private String apellido;
     private String tipoCliente;
-    
-     public Cliente() {
-        
+    private String cif;
+
+    public Cliente() {
     }
-    public Cliente(int idCliente, String nombre, String apellido, String tipoCliente) {
+
+    public Cliente(int idCliente, String nombre, String apellido, String tipoCliente, String cif) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellido = apellido;
         this.tipoCliente = tipoCliente;
+        this.cif= cif;
     }
-    
-    
 
     public int getIdCliente() {
         return idCliente;
@@ -62,6 +62,12 @@ public class Cliente implements Serializable{
     public void setTipoCliente(String tipoCliente) {
         this.tipoCliente = tipoCliente;
     }
-    
-    
+
+    public String getCif() {
+        return cif;
+    }
+
+    public void setCif(String cif) {
+        this.cif = cif;
+    }
 }
