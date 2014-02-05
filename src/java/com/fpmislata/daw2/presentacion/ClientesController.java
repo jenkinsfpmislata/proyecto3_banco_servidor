@@ -94,6 +94,7 @@ public class ClientesController {
             cliente.setIdCliente(cliente2.getIdCliente());
             cliente.setNombre(cliente2.getNombre());
             cliente.setTipoCliente(cliente2.getTipoCliente());
+            cliente.setCif(cliente2.getCif());
 
             clientesDAO.update(cliente);
 
