@@ -111,7 +111,7 @@ public class CuentaBancariaController {
 
     }
       @RequestMapping(value = {"/CuentaBancaria/{idCuentaBancaria}/movimientosBancarios/"}, method = RequestMethod.GET,produces = "application/json")
-    public void findSucursales(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse,@PathVariable("idCuentaBancaria") int idCuentaBancaria, @RequestBody String json) {
+    public void findMovimientos(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse,@PathVariable("idCuentaBancaria") int idCuentaBancaria, @RequestBody String json) {
         try {
             
             List<MovimientoBancario> listaMovimientos = movimientoBancarioDAO.findbyIdCuenta(idCuentaBancaria);

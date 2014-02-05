@@ -17,19 +17,19 @@ public class MovimientoBancario implements Serializable{
     private TipoMovimientoBancario tipoMovimientoBancario;
     private BigDecimal importe;
     private Date fecha;
-    private BigDecimal SaldoTotal;
+    private BigDecimal saldoTotal;
     private String concepto;
     private CuentaBancaria cuenta;
 
     public MovimientoBancario() {
     }
 
-    public MovimientoBancario(int idMovimientoBancario, TipoMovimientoBancario tipoMovimientoBancario, BigDecimal importe, Date fecha, BigDecimal SaldoTotal, String concepto, CuentaBancaria cuenta) {
+    public MovimientoBancario(int idMovimientoBancario, TipoMovimientoBancario tipoMovimientoBancario, BigDecimal importe, Date fecha, BigDecimal saldoTotal, String concepto, CuentaBancaria cuenta) {
         this.idMovimientoBancario = idMovimientoBancario;
         this.tipoMovimientoBancario = tipoMovimientoBancario;
         this.importe = importe;
         this.fecha = fecha;
-        this.SaldoTotal = SaldoTotal;
+        this.saldoTotal = saldoTotal;
         this.concepto = concepto;
         this.cuenta = cuenta;
         
@@ -69,11 +69,11 @@ public class MovimientoBancario implements Serializable{
     }
 
     public BigDecimal getSaldoTotal() {
-        return SaldoTotal;
+        return saldoTotal;
     }
 
-    public void setSaldoTotal(BigDecimal SaldoTotal) {
-        this.SaldoTotal = SaldoTotal;
+    public void setSaldoTotal(BigDecimal saldoTotal) {
+        this.saldoTotal = saldoTotal;
     }
 
     public String getConcepto() {
