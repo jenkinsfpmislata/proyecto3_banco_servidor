@@ -114,7 +114,8 @@ public class SucursalBancariaController {
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
             SucursalBancaria sucursalBancaria2 = (SucursalBancaria)objectMapper.readValue(json, SucursalBancaria.class);
             
-            sucursalBancaria.setNombre(sucursalBancaria.getNombre());
+            sucursalBancaria.setNombre(sucursalBancaria2.getNombre());
+            sucursalBancaria.setCodigoSucursal(sucursalBancaria2.getCodigoSucursal());
             
             
             
