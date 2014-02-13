@@ -4,6 +4,7 @@
  */
 package com.fpmislata.daw2.datos;
 
+import com.fpmislata.daw2.modelo.Cliente;
 import com.fpmislata.daw2.modelo.CuentaBancaria;
 import java.util.List;
 
@@ -15,7 +16,8 @@ public interface CuentaBancariaDAO extends GenericDAO<CuentaBancaria, Integer>{
 
   public List<CuentaBancaria> findbyCif(String nombre);
 
-    
+    public List<CuentaBancaria> findbyCliente(Cliente cliente);
+
 }
 
     

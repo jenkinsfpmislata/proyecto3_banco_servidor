@@ -7,6 +7,8 @@
         <property name="apellido" />
         <property name="tipoCliente"/>
         <property name="cif"/>
+        <property name="login"/>
+        <property name="password"/>
         
     </class>
 </hibernate-mapping>

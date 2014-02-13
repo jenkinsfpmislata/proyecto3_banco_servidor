@@ -5,7 +5,9 @@
 package com.fpmislata.daw2.modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fpmislata.daw2.presentacion.Credenciales;
 import java.io.Serializable;
+import org.jasypt.util.password.BasicPasswordEncryptor;
 
 /**
  *
@@ -19,16 +21,20 @@ public class Cliente implements Serializable {
     private String apellido;
     private String tipoCliente;
     private String cif;
+    private String login;
+    private String password;
 
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String nombre, String apellido, String tipoCliente, String cif) {
+    public Cliente(int idCliente, String nombre, String apellido, String tipoCliente, String cif, String password, String login) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellido = apellido;
         this.tipoCliente = tipoCliente;
-        this.cif= cif;
+        this.cif = cif;
+        this.login = login;
+        this.password = password;
     }
 
     public int getIdCliente() {
@@ -69,5 +75,35 @@ public class Cliente implements Serializable {
 
     public void setCif(String cif) {
         this.cif = cif;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) { 
+        this.password = password;
+    }
+
+    public boolean checkPassword(String unEncryptedPassword) { //no encriptado
+        String cryptedPassword=getPassword(); // encriptado
+       // BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+       // String encryptedPassword = passwordEncryptor.encryptPassword(password); crear usuario
+
+        if(unEncryptedPassword.equals(cryptedPassword)){
+ 
+       // if (passwordEncryptor.checkPassword(unEncryptedPassword, cryptedPassword)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
