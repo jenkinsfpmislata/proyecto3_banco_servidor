@@ -3,7 +3,10 @@ package com.fpmislata.daw2.presentacion;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fpmislata.daw2.datos.ClienteDAO;
 import com.fpmislata.daw2.datos.ClienteDAOImplHibernate;
+import com.fpmislata.daw2.datos.CuentaBancariaDAO;
+import com.fpmislata.daw2.datos.CuentaBancariaDAOImplHibernate;
 import com.fpmislata.daw2.modelo.Cliente;
+import com.fpmislata.daw2.modelo.CuentaBancaria;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,7 +29,31 @@ public class ClientesController {
 
     @Autowired
     ClienteDAO clientesDAO = new ClienteDAOImplHibernate();
+    CuentaBancariaDAO cuentaBancariaDAO = new CuentaBancariaDAOImplHibernate();
 
+    
+    
+    
+        @RequestMapping(value = {"/Cliente/{idCliente}/CuentaBancaria"}, method = RequestMethod.GET, produces = "application/json")
+    public void readCuentaBancaria(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @PathVariable("idCliente") int idCliente, @RequestBody String json) {
+        try {
+            Cliente cliente = clientesDAO.read(idCliente);
+            List<CuentaBancaria> listaCuentas = cuentaBancariaDAO.findbyCliente(cliente);
+
+            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+
+            httpServletResponse.setContentType("application/json; charset=UTF-8");
+            ObjectMapper objectMapper = new ObjectMapper();
+            json = objectMapper.writeValueAsString(listaCuentas);
+            httpServletResponse.getWriter().println(json);
+        } catch (Exception ex) {
+            Logger.getLogger(ClientesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        }
+    
+    
+    
     @RequestMapping(value = {"/Cliente/{idCliente}"}, method = RequestMethod.GET, produces = "application/json")
     public void read(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @PathVariable("idCliente") int idCliente, @RequestBody String json) {
         try {
@@ -43,6 +70,7 @@ public class ClientesController {
         }
 
     }
+  
 
     @RequestMapping(value = {"/Cliente/{idCliente}"}, method = RequestMethod.DELETE)
     public void delete(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @PathVariable("idCliente") int idCliente, @RequestBody String json) {
@@ -95,6 +123,8 @@ public class ClientesController {
             cliente.setNombre(cliente2.getNombre());
             cliente.setTipoCliente(cliente2.getTipoCliente());
             cliente.setCif(cliente2.getCif());
+            cliente.setPassword(cliente2.getPassword());
+            cliente.setLogin(cliente2.getLogin());
 
             clientesDAO.update(cliente);
 
