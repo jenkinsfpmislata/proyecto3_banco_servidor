@@ -31,6 +31,19 @@ public class CuentaBancariaDAOImplHibernate extends GenericDAOImplHibernate<Cuen
             return objectList;
         }
     }
+    
+     public CuentaBancaria findbyNumero(String numero) {
+        
+            Session session = sessionFactory.getCurrentSession();
+            session.beginTransaction();
+            Query query = session.createQuery("Select cuentaBancaria from CuentaBancaria cuentaBancaria where numeroDeCuenta = ?");
+            query.setString(0, numero );
+            List<CuentaBancaria> objectList = query.list();
+            CuentaBancaria cuenta = objectList.get(0);
+            session.getTransaction().commit();
+            return cuenta;
+        
+    }
         
     
 

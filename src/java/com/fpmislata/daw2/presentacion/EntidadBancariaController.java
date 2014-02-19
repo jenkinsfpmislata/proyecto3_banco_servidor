@@ -82,7 +82,7 @@ public class EntidadBancariaController {
                 listaEntidades = entidadBancariaDAO.findAll();
             }
             
-            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             httpServletResponse.setContentType("application/json; charset=UTF-8");
             ObjectMapper objectMapper = new ObjectMapper();
             json = objectMapper.writeValueAsString(listaEntidades);

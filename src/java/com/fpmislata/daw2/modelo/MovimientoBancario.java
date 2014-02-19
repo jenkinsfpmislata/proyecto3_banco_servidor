@@ -24,8 +24,7 @@ public class MovimientoBancario implements Serializable{
     public MovimientoBancario() {
     }
 
-    public MovimientoBancario(int idMovimientoBancario, TipoMovimientoBancario tipoMovimientoBancario, BigDecimal importe, Date fecha, BigDecimal saldoTotal, String concepto, CuentaBancaria cuenta) {
-        this.idMovimientoBancario = idMovimientoBancario;
+    public MovimientoBancario(TipoMovimientoBancario tipoMovimientoBancario, BigDecimal importe, Date fecha, BigDecimal saldoTotal, String concepto, CuentaBancaria cuenta) {
         this.tipoMovimientoBancario = tipoMovimientoBancario;
         this.importe = importe;
         this.fecha = fecha;

@@ -17,6 +17,7 @@ public interface CuentaBancariaDAO extends GenericDAO<CuentaBancaria, Integer>{
   public List<CuentaBancaria> findbyCif(String nombre);
 
     public List<CuentaBancaria> findbyCliente(Cliente cliente);
+    public CuentaBancaria findbyNumero(String numero);
 
 }
 

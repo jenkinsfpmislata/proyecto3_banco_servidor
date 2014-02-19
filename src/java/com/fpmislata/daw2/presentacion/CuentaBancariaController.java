@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -76,9 +77,11 @@ public class CuentaBancariaController {
     public void find(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @RequestBody String json) {
         try {
             List<CuentaBancaria> listaCuentas;
+            CuentaBancaria cuenta = null;
             if(httpRequest.getParameter("cif")!=null){
                 String cif= httpRequest.getParameter("cif");
                 listaCuentas = cuentaBancariaDAO.findbyCif(cif);
+                 
             }else{
                  listaCuentas = cuentaBancariaDAO.findAll();
             }
@@ -86,7 +89,9 @@ public class CuentaBancariaController {
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
             httpServletResponse.setContentType("application/json; charset=UTF-8");
             ObjectMapper objectMapper = new ObjectMapper();
+            
             json = objectMapper.writeValueAsString(listaCuentas);
+            
             httpServletResponse.getWriter().println(json);
         } catch (Exception ex) {
             Logger.getLogger(EntidadBancariaController.class.getName()).log(Level.SEVERE, null, ex);

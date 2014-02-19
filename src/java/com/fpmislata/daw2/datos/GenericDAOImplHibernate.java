@@ -58,7 +58,7 @@ public class GenericDAOImplHibernate<T, ID extends Serializable> implements Gene
         session.beginTransaction();
         session.save(tipo);
         session.getTransaction().commit();
-
+        
     }
 
     @Override

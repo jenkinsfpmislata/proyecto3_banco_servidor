@@ -5,6 +5,7 @@
 package com.fpmislata.daw2.datos;
 
 import com.fpmislata.daw2.modelo.Cliente;
+import com.fpmislata.daw2.modelo.CuentaBancaria;
 import com.fpmislata.daw2.modelo.EntidadBancaria;
 import java.io.Serializable;
 import java.util.List;
@@ -31,6 +32,7 @@ public class ClienteDAOImplHibernate extends GenericDAOImplHibernate<Cliente, In
             return objectList;
         }
     }
+   
 
     /*public Cliente readByLogin(String login) {
      Session session = sessionFactory.getCurrentSession();
