@@ -2,7 +2,9 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.fpmislata.daw2.modelo.EntidadBancaria" table="entidad_bancaria" >
-        <id name="idEntidad" type="integer"/>
+        <id name="idEntidad" type="integer">
+             <generator class="identity" />
+        </id>
         <property column="codigo" name="codigoEntidad"  />
         <property  name="nombre"  />
         <property name="cif" />

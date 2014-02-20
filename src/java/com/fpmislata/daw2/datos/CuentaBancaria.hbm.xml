@@ -2,8 +2,9 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.fpmislata.daw2.modelo.CuentaBancaria" table="cuenta_bancaria" >
-        <id name="idCuentaBancaria" type="integer" column="idCuenta_Bancaria"/>
-        
+        <id name="idCuentaBancaria" type="integer" column="idCuenta_Bancaria">
+             <generator class="identity" />
+        </id>
         <many-to-one name="sucursalBancaria">
             <column name="id_SucursalBancaria"/>
         </many-to-one> 

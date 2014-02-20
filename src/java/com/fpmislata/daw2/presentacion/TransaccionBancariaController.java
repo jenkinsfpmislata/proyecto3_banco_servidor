@@ -50,17 +50,17 @@ public class TransaccionBancariaController {
     public void insert(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @RequestBody String json) {
         try {
            
-            httpServletResponse.setContentType("application/json; charset=UTF-8");
+            
             ObjectMapper objectMapper = new ObjectMapper();
             TransaccionBancaria transaccionBancaria = (TransaccionBancaria)objectMapper.readValue(json, TransaccionBancaria.class);
-            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+
             BigDecimal importe = transaccionBancaria.getImporte();
             String cuentaOrigen = transaccionBancaria.getCuentaOrigen();
             String cuentaDestino = transaccionBancaria.getCuentaDestino();
             
+            
+            
             MovimientoBancario movimientoBancarioOrigen = new MovimientoBancario();
-            
-            
             
             CuentaBancaria cuentaBancariaOrigen = cuentaBancariaDAO.findbyNumero(cuentaOrigen);
             cuentaBancariaOrigen.setSaldo(cuentaBancariaOrigen.getSaldo().subtract(importe));
@@ -71,9 +71,10 @@ public class TransaccionBancariaController {
             movimientoBancarioOrigen.setImporte(importe);
             movimientoBancarioOrigen.setSaldoTotal(cuentaBancariaOrigen.getSaldo());
             movimientoBancarioOrigen.setTipoMovimientoBancario(TipoMovimientoBancario.DEBE);
-            cuentaBancariaDAO.update(cuentaBancariaOrigen);
+            //cuentaBancariaDAO.update(cuentaBancariaOrigen);
             movimientoBancarioDAO.insert(movimientoBancarioOrigen);
             
+           
             CuentaBancaria cuentaBancariaDestino = cuentaBancariaDAO.findbyNumero(cuentaDestino);
             cuentaBancariaDestino.setSaldo(cuentaBancariaDestino.getSaldo().add(importe));
             MovimientoBancario movimientoBancarioDestino = new MovimientoBancario();
@@ -86,9 +87,14 @@ public class TransaccionBancariaController {
             movimientoBancarioDestino.setTipoMovimientoBancario(TipoMovimientoBancario.HABER);
             
             
-            cuentaBancariaDAO.update(cuentaBancariaDestino);            
+            //cuentaBancariaDAO.update(cuentaBancariaDestino);            
             movimientoBancarioDAO.insert(movimientoBancarioDestino);
             
+            
+            
+            
+            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json; charset=UTF-8");            
             httpServletResponse.getWriter().println(json);
             
         } catch (Exception ex) {
