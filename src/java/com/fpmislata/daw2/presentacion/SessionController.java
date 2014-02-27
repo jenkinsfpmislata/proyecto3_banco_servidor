@@ -23,25 +23,25 @@ public class SessionController {
 
     @RequestMapping(value = {"/session"}, method = RequestMethod.POST, produces = "application/json")
     public void readByLogin(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @RequestBody String json) {
-        
-        ObjectMapper objectMapper = new ObjectMapper();
-        
+
+
+
         try {
 
             httpServletResponse.setContentType("application/json; charset=UTF-8");
-
+            ObjectMapper objectMapper = new ObjectMapper();
             Credenciales credenciales = objectMapper.readValue(json, Credenciales.class);
 
             Cliente cliente = clientesDAO.readByLogin(credenciales.getLogin());
 
             if (cliente == null) {
                 httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
-                json = objectMapper.writeValueAsString(cliente);
+                json = null;
                 httpServletResponse.getWriter().println(json);
-                
+
             } else {
 
-                if (cliente.checkPassword(credenciales.getPassword())==true) {
+                if (cliente.checkPassword(credenciales.getPassword()) == true) {
 
                     HttpSession httpSession = httpRequest.getSession(true); //crea sesion si no existe
                     httpSession.setAttribute("idCliente", cliente.getIdCliente()); //nombre variable y valor del id de cliente ¡¡¡¡JAMAS el cliente
@@ -49,16 +49,16 @@ public class SessionController {
                     httpServletResponse.setStatus(HttpServletResponse.SC_OK);
 
                     httpServletResponse.setContentType("application/json; charset=UTF-8");
-                     //ObjectMapper objectMapper = new ObjectMapper();
-                    json = "biennn";//objectMapper.writeValueAsString(cliente);
+                    ObjectMapper objectMapper2 = new ObjectMapper();
+                    json = objectMapper2.writeValueAsString(cliente);
                     httpServletResponse.getWriter().println(json);
 
                 } else {
                     httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
-                   httpServletResponse.setContentType("application/json; charset=UTF-8");
-                  //  ObjectMapper objectMapper = new ObjectMapper();
-                      json = objectMapper.writeValueAsString(cliente);
-                    //json = null;
+                    httpServletResponse.setContentType("application/json; charset=UTF-8");
+                    //  ObjectMapper objectMapper = new ObjectMapper();
+                    //json = objectMapper.writeValueAsString(cliente);
+                    json = null;
                     httpServletResponse.getWriter().println(json);
 
                 }

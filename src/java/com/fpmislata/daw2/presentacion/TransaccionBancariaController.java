@@ -49,16 +49,11 @@ public class TransaccionBancariaController {
     @RequestMapping(value = {"/TransaccionBancaria/"}, method = RequestMethod.POST,produces = "application/json")
     public void insert(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @RequestBody String json) {
         try {
-           
-            
             ObjectMapper objectMapper = new ObjectMapper();
             TransaccionBancaria transaccionBancaria = (TransaccionBancaria)objectMapper.readValue(json, TransaccionBancaria.class);
-
             BigDecimal importe = transaccionBancaria.getImporte();
             String cuentaOrigen = transaccionBancaria.getCuentaOrigen();
             String cuentaDestino = transaccionBancaria.getCuentaDestino();
-            
-            
             
             MovimientoBancario movimientoBancarioOrigen = new MovimientoBancario();
             
@@ -73,8 +68,7 @@ public class TransaccionBancariaController {
             movimientoBancarioOrigen.setTipoMovimientoBancario(TipoMovimientoBancario.DEBE);
             //cuentaBancariaDAO.update(cuentaBancariaOrigen);
             movimientoBancarioDAO.insert(movimientoBancarioOrigen);
-            
-           
+                   
             CuentaBancaria cuentaBancariaDestino = cuentaBancariaDAO.findbyNumero(cuentaDestino);
             cuentaBancariaDestino.setSaldo(cuentaBancariaDestino.getSaldo().add(importe));
             MovimientoBancario movimientoBancarioDestino = new MovimientoBancario();
@@ -85,14 +79,10 @@ public class TransaccionBancariaController {
             movimientoBancarioDestino.setImporte(importe);
             movimientoBancarioDestino.setSaldoTotal(cuentaBancariaDestino.getSaldo());
             movimientoBancarioDestino.setTipoMovimientoBancario(TipoMovimientoBancario.HABER);
-            
-            
+                     
             //cuentaBancariaDAO.update(cuentaBancariaDestino);            
             movimientoBancarioDAO.insert(movimientoBancarioDestino);
-            
-            
-            
-            
+   
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
             httpServletResponse.setContentType("application/json; charset=UTF-8");            
             httpServletResponse.getWriter().println(json);
