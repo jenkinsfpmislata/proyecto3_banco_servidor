@@ -101,8 +101,9 @@ public class Cliente implements Serializable {
         this.password = password;
     }
 
-    public boolean checkPassword(String unEncryptedPassword) { //no encriptado
-        String cryptedPassword=getPassword(); // encriptado
+    //Los usuarios no estan encriptados en la base de datos por eso no usamos la comprobacion de la encriptacion
+    public boolean checkPassword(String unEncryptedPassword) { // password no encriptado
+        String cryptedPassword=getPassword(); // password encriptado
        // BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
        // String encryptedPassword = passwordEncryptor.encryptPassword(password); crear usuario
 

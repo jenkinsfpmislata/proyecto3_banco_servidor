@@ -124,6 +124,7 @@ public class EntidadBancariaController {
             httpServletResponse.setContentType("application/json; charset=UTF-8");
             ObjectMapper objectMapper = new ObjectMapper();
             EntidadBancaria entidadBancaria = (EntidadBancaria)objectMapper.readValue(json, EntidadBancaria.class);
+            
 //            List<MensajeError> listaMensajes = new ArrayList<MensajeError>();
 //            boolean error = false;
 //            if(entidadBancaria.getCif().equals("") ||entidadBancaria.getCif()==null){
