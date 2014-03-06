@@ -7,18 +7,27 @@ package com.fpmislata.daw2.modelo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
  * @author alumno
  */
 public class MovimientoBancario implements Serializable{
+    @NotNull
     private int idMovimientoBancario;
+    @NotNull
     private TipoMovimientoBancario tipoMovimientoBancario;
+    @NotNull
     private BigDecimal importe;
+    @NotNull
     private Date fecha;
+    @NotNull
     private BigDecimal saldoTotal;
+    @NotBlank
     private String concepto;
+    @NotNull
     private CuentaBancaria cuenta;
 
     public MovimientoBancario() {

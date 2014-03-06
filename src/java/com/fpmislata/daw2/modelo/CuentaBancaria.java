@@ -11,6 +11,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 
 
 /**
@@ -20,13 +22,20 @@ import java.util.List;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class CuentaBancaria implements Serializable {
+    @NotNull
     private int idCuentaBancaria;
+    @NotNull
     private SucursalBancaria sucursalBancaria;
+    @NotBlank
     private String numeroDeCuenta;
+    @NotBlank
     private String dc;
+    @NotNull
     private BigDecimal saldo;
+    @NotBlank
     private String cif;
     private List<MovimientoBancario> movimientos;
+    @NotNull
     private Cliente cliente;
 
     public CuentaBancaria() {

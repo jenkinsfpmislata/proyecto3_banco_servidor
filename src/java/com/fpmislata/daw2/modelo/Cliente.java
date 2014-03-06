@@ -7,6 +7,8 @@ package com.fpmislata.daw2.modelo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fpmislata.daw2.presentacion.Credenciales;
 import java.io.Serializable;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 import org.jasypt.util.password.BasicPasswordEncryptor;
 
 /**
@@ -15,13 +17,19 @@ import org.jasypt.util.password.BasicPasswordEncryptor;
  */
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cliente implements Serializable {
-
+    @NotNull
     private int idCliente;
+    @NotBlank
     private String nombre;
+    @NotBlank
     private String apellido;
+    @NotBlank
     private String tipoCliente;
+    @NotBlank
     private String cif;
+    @NotBlank
     private String login;
+    @NotBlank
     private String password;
 
     public Cliente() {

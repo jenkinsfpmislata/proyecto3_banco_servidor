@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -15,9 +17,13 @@ import java.util.List;
  */
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class SucursalBancaria implements Serializable{
+    @NotNull
     private int idSucursalBancaria;
+    @NotNull
     private EntidadBancaria entidadBancaria;
+    @NotBlank
     private String codigoSucursal;
+    @NotBlank
     private String nombre;
     private List<CuentaBancaria> cuentasBancarias;
 

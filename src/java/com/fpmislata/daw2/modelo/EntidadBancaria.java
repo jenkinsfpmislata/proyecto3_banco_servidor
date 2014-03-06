@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -20,10 +22,15 @@ public class EntidadBancaria implements Serializable {
      * @param args the command line arguments
      */
     
+    @NotNull
     private int idEntidad;
+    @NotBlank
     private String codigoEntidad;
+    @NotBlank
     private String nombre;
+    @NotBlank
     private String cif;
+    @NotNull
     private TipoEntidadBancaria tipoEntidadBancaria;
     private List<SucursalBancaria> sucursales;
 
